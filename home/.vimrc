@@ -37,7 +37,10 @@ call pathogen#infect()
   let mapleader = ","
 
   " Set temporary directory (don't litter local dir with swp/tmp files)
-  set directory=/tmp/
+  " set directory=/tmp/ 
+  " ^ caused a headache when the netbook didn't sleep and I lost my .swp
+  set backupdir=~/tmp/vim//
+  set directory=~/tmp/vim//
 
   " When scrolling off-screen do so 3 lines at a time, not 1
   set scrolloff=3
