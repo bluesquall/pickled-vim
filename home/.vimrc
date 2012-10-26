@@ -9,6 +9,10 @@ call pathogen#infect()
   colorscheme solarized
   let g:solarized_termtrans=1
 
+  " let's give vim an easy way to insert timestamps
+  nnoremap <F5> "=strftime("%F %T-%z")<CR>P
+  inoremap <F5> "=strftime("%F %T-%z")<CR>P
+
   " These two enable syntax highlighting
   set nocompatible          " We're running Vim, not Vi!
   syntax on                 " Enable syntax highlighting
@@ -39,8 +43,8 @@ call pathogen#infect()
   " Set temporary directory (don't litter local dir with swp/tmp files)
   " set directory=/tmp/ 
   " ^ caused a headache when the netbook didn't sleep and I lost my .swp
-  set backupdir=~/tmp/vim//
-  set directory=~/tmp/vim//
+  set backupdir=~/tmp/vim/
+  set directory=~/tmp/vim/
 
   " When scrolling off-screen do so 3 lines at a time, not 1
   set scrolloff=3
