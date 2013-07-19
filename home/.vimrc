@@ -4,6 +4,10 @@ call pathogen#infect()
 
   scriptencoding utf-8
 
+  " some useful bits to encourage lines < 80 characters
+  set colorcolumn=76
+  " set textwidth=80
+
   " let's try solarized
   set background=dark
   colorscheme solarized
@@ -51,7 +55,7 @@ call pathogen#infect()
 
   " enable line numbers 
   set number
-  setlocal numberwidth=5
+  setlocal numberwidth=3
 
   " Enable tab complete for commands.
   " first tab shows all matches. next tab starts cycling through the matches
@@ -65,10 +69,10 @@ call pathogen#infect()
   "set list listchars=tab:»·,trail:·
 
   " don't make it look like there are line breaks where there aren't:
-  "set nowrap
+  set nowrap
 
   " assume the /g flag on :s substitutions to replace all matches in a line:
-  set gdefault
+  " set gdefault
 
   " Load matchit (% to bounce from do to end, etc.)
   runtime! macros/matchit.vim
@@ -101,7 +105,7 @@ call pathogen#infect()
   " Turn off rails bits of statusbar
   let g:rails_statusline=0
 
-  " quit NERDTree after openning a file
+  " quit NERDTree after opening a file
   let NERDTreeQuitOnOpen=1
   " colored NERD Tree
   let NERDChristmasTree = 1
@@ -128,7 +132,10 @@ call pathogen#infect()
     autocmd!
     " autoindent with two spaces, always expand tabs
     autocmd FileType ruby,eruby,yaml,markdown set autoindent shiftwidth=2 softtabstop=2 tabstop=2 expandtab
-    autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab
+    autocmd FileType python set autoindent shiftwidth=4 softtabstop=4 expandtab textwidth=80
+    autocmd FileType matlab set autoindent shiftwidth=4 softtabstop=4 expandtab textwidth=80
+    autocmd FileType c,cpp set autoindent shiftwidth=4 softtabstop=4 expandtab
+    " add for LaTeX files
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
