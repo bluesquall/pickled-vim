@@ -12,6 +12,7 @@ call pathogen#infect()
   set background=dark
   colorscheme solarized
   let g:solarized_termtrans=1
+  " colorscheme atom-dark
 
   " let's give vim an easy way to insert timestamps
   nnoremap <F5> "=strftime("%F %T-%z")<CR>P
@@ -101,6 +102,20 @@ call pathogen#infect()
   set foldmethod=syntax
   set foldlevel=999 " make it really high, so they're not displayed by default
   
+  " 'murica
+  set spelllang=en_us
+  
+  " ctrl-p ignores and whatnot
+  set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+  "
+  let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|tmp|bundle)$', 
+  \ 'file': '\v\.(exe|so|dll|gem)$',
+  \ }
+
+  " ctrl-p extensions
+  "
+  let g:ctrlp_extensions = ['tag']
 
   " Turn off rails bits of statusbar
   let g:rails_statusline=0
@@ -139,6 +154,7 @@ call pathogen#infect()
     autocmd FileType javascript,html,htmldjango,css set autoindent shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType vim set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     autocmd FileType cucumber set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+    autocmd FileType puppet set autoindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab
     au BufNewFile,BufReadPost *.coffee setl shiftwidth=2 expandtab
     au BufRead,BufNewFile *etc/nginx/* set ft=nginx 
     " treat rackup files like ruby
@@ -150,6 +166,7 @@ call pathogen#infect()
     au BufRead,BufNewFile Thorfile set ft=ruby                                   
     au BufRead,BufNewFile *.god set ft=ruby  
     au BufRead,BufNewFile .caprc set ft=ruby  
+    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
   augroup END
 
 
@@ -272,6 +289,11 @@ call pathogen#infect()
   " Easily lookup documentation on apidock
   noremap <leader>rb :call OpenRubyDoc(expand('<cword>'))<CR>
   noremap <leader>rr :call OpenRailsDoc(expand('<cword>'))<CR>
+
+  " Easily spell check
+  " http://vimcasts.org/episodes/spell-checking/
+  nmap <silent> <leader>s :set spell!<CR>
+  
 
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
