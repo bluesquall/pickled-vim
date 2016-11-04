@@ -14,6 +14,10 @@ call pathogen#infect()
   let g:solarized_termtrans=1
   " colorscheme atom-dark
 
+  " make sure we can select without entering visual mode
+  " (enables easier copying to other applications)
+  set mouse-=a
+
   " let's give vim an easy way to insert timestamps
   nnoremap <F5> "=strftime("%F %T-%z")<CR>P
   inoremap <F5> "=strftime("%F %T-%z")<CR>P
