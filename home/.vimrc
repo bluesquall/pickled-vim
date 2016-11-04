@@ -46,9 +46,6 @@ call pathogen#infect()
   "sta:   helps with backspacing because of expandtab
   set smarttab
 
-  " Change <Leader>
-  let mapleader = ","
-
   " Set temporary directory (don't litter local dir with swp/tmp files)
   " set directory=/tmp/ 
   " ^ caused a headache when the netbook didn't sleep and I lost my .swp
@@ -71,16 +68,13 @@ call pathogen#infect()
   set complete-=i
 
   " Display extra whitespace
-  "set list listchars=tab:»·,trail:·
+  set list listchars=tab:»·,trail:·
 
   " don't make it look like there are line breaks where there aren't:
   set nowrap
 
   " assume the /g flag on :s substitutions to replace all matches in a line:
   " set gdefault
-
-  " Load matchit (% to bounce from do to end, etc.)
-  runtime! macros/matchit.vim
 
   " Nice statusbar
   set laststatus=2
@@ -109,43 +103,6 @@ call pathogen#infect()
   " 'murica
   set spelllang=en_us
   
-  " ctrl-p ignores and whatnot
-  set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-  "
-  let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn|tmp|bundle)$', 
-  \ 'file': '\v\.(exe|so|dll|gem)$',
-  \ }
-
-  " ctrl-p extensions
-  "
-  let g:ctrlp_extensions = ['tag']
-
-  " Turn off rails bits of statusbar
-  let g:rails_statusline=0
-
-  " quit NERDTree after opening a file
-  let NERDTreeQuitOnOpen=1
-  " colored NERD Tree
-  let NERDChristmasTree = 1
-  let NERDTreeHighlightCursorline = 1
-  let NERDTreeShowHidden = 1
-  " map enter to activating a node
-  let NERDTreeMapActivateNode='<CR>'
-  let NERDTreeIgnore=['\.git','\.DS_Store','\.pdf', '.beam']
-
-  " limit number of results shown for performance
-  let g:fuzzy_matching_limit=60
-  " ignore stuff that can't be openned, and generated files
-  let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;*.beam;vendor/**;coverage/**;tmp/**;rdoc/**"
-  " increate the number of files scanned for very large projects
-  let g:fuzzy_ceiling=20000
-  " display relative path, instead of abbrevated path (lib/jeweler.rb vs
-  " l/jeweler.rb)
-  let g:fuzzy_path_display = 'relative_path'
-
-  let g:browser = 'open '
-
   augroup myfiletypes
     " Clear old autocmds in group
     autocmd!
@@ -192,14 +149,6 @@ call pathogen#infect()
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
   autocmd FileType c set omnifunc=ccomplete#Complete
 
-
-  " have some fun with bufexplorer
-  let g:bufExplorerDefaultHelp=0       " Do not show default help.
-  let g:bufExplorerShowRelativePath=1  " Show relative paths.
-
-" IRB {{{
-  autocmd FileType irb inoremap <buffer> <silent> <CR> <Esc>:<C-u>ruby v=VIM::Buffer.current;v.append(v.line_number, eval(v[v.line_number]).inspect)<CR>
-
 " Section: functions
 
   function! s:RunShellCommand(cmdline)
@@ -220,29 +169,10 @@ call pathogen#infect()
     1
   endfunction
 
-  " Open the Rails ApiDock page for the word under cursor, using the 'open'
-  " command
-  function! OpenRailsDoc(keyword)
-    let url = 'http://apidock.com/rails/'.a:keyword
-    exec '!'.g:browser.' '.url
-  endfunction
-
-  " Open the Ruby ApiDock page for the word under cursor, using the 'open'
-  " command
-  function! OpenRubyDoc(keyword)
-    let url = 'http://apidock.com/ruby/'.a:keyword
-    exec '!'.g:browser.' '.url
-  endfunction
-
 " Section: commands
 
   " Shell
   command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
-
-  " Ruby code metrics
-  command! -complete=file -nargs=+ Reek :Shell reek <q-args>
-  command! -complete=file -nargs=+ Roodi :Shell roodi <q-args>
-  command! -complete=file -nargs=+ Flog :Shell flog -m -I lib <q-args> 2>/dev/null
 
 " Section: mappings
 
@@ -254,21 +184,6 @@ call pathogen#infect()
   " Remap F1 from Help to ESC.  No more accidents.
   nmap <F1> <Esc>
   map! <F1> <Esc>
-
-  " insert hashrocket, =>, with control-l
-  imap <C-l> <Space>=><Space>
-
-  " align hashrockets with <leader>t control-l
-  vmap <leader>t<C-l> :Align =><CR>
-
-  " Toggle NERDTree with <leader>d
-  map <silent> <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
-  " TextMate fuzzy finder with <leader>t
-  map <silent> <leader>t :FuzzyFinderTextMate<CR>
-
-  " FuzzyFinder tags with <leader>T
-  nnoremap <silent> <leader>T :FuzzyFinderTag!<CR>
 
   " <leader>F to begin searching with ack
   map <leader>F :Ack<space>
@@ -285,15 +200,6 @@ call pathogen#infect()
   " Hide search highlighting
   map <silent> <leader>nh :nohls <CR>
 
-  " toggle Quickfix window with <leader>q
-  map <silent> <leader>q :QFix<CR>
-
-  nnoremap <leader>irb :<C-u>below new<CR>:setfiletype irb<CR>:set syntax=ruby<CR>:set buftype=nofile<CR>:set bufhidden=delete<CR>i
-
-  " Easily lookup documentation on apidock
-  noremap <leader>rb :call OpenRubyDoc(expand('<cword>'))<CR>
-  noremap <leader>rr :call OpenRailsDoc(expand('<cword>'))<CR>
-
   " Easily spell check
   " http://vimcasts.org/episodes/spell-checking/
   nmap <silent> <leader>s :set spell!<CR>
@@ -302,13 +208,3 @@ call pathogen#infect()
   map <C-c>n :cnext<CR>
   map <C-c>p :cprevious<CR>
 
-  function! RspecToMocha()
-    silent! %s/\.stub!\?(/.stubs(/
-    silent! %s/and_return/returns/
-    silent! %s/should_receive/expects/
-    silent! %s/should_not_receive\((.*)\)/expects\1.never
-    silent! %s/and_raise/raises/
-    :w
-  endfunction
-  command! RspecToMocha call RspecToMocha()
-  

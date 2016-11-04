@@ -13,33 +13,15 @@
 [submodule "home/.vim/bundle/vim-surround"]
 	path = home/.vim/bundle/vim-surround
 	url = git://github.com/tpope/vim-surround.git
-[submodule "home/.vim/bundle/vim-rails"]
-	path = home/.vim/bundle/vim-rails
-	url = git://github.com/tpope/vim-rails.git
 [submodule "home/.vim/bundle/vim-git"]
 	path = home/.vim/bundle/vim-git
 	url = git://github.com/tpope/vim-git.git
-[submodule "home/.vim/bundle/vim-endwise"]
-	path = home/.vim/bundle/vim-endwise
-	url = git://github.com/tpope/vim-endwise.git
 [submodule "home/.vim/bundle/vim-space"]
 	path = home/.vim/bundle/vim-space
 	url = git://github.com/spiiph/vim-space.git
 [submodule "home/.vim/bundle/vim-repeat"]
 	path = home/.vim/bundle/vim-repeat
 	url = git://github.com/tpope/vim-repeat.git
-[submodule "home/.vim/bundle/vimerl"]
-	path = home/.vim/bundle/vimerl
-	url = https://github.com/oscarh/vimerl.git
-[submodule "home/.vim/bundle/vim-coffee-script"]
-	path = home/.vim/bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "home/.vim/bundle/vim-rake"]
-	path = home/.vim/bundle/vim-rake
-	url = git://github.com/tpope/vim-rake.git
-[submodule "home/.vim/bundle/ctrlp"]
-	path = home/.vim/bundle/ctrlp
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "home/.vim/bundle/vim-less"]
 	path = home/.vim/bundle/vim-less
 	url = git://github.com/groenewege/vim-less.git
@@ -49,15 +31,9 @@
 [submodule "home/.vim/bundle/vim-css3-syntax"]
 	path = home/.vim/bundle/vim-css3-syntax
 	url = git://github.com/hail2u/vim-css3-syntax.git
-[submodule "home/.vim/bundle/vim-cucumber"]
-	path = home/.vim/bundle/vim-cucumber
-	url = git://github.com/tpope/vim-cucumber.git
 [submodule "home/.vim/bundle/ack.vim"]
 	path = home/.vim/bundle/ack.vim
 	url = git://github.com/mileszs/ack.vim.git
-[submodule "home/.vim/bundle/nerdtree"]
-	path = home/.vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
 [submodule "home/.vim/bundle/jellybeans.vim"]
 	path = home/.vim/bundle/jellybeans.vim
 	url = git://github.com/nanotech/jellybeans.vim.git
@@ -69,9 +45,6 @@
 	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule ".vim/bundle/puppet"]
 	path = .vim/bundle/puppet
-	url = git://github.com/rodjek/vim-puppet.git
-[submodule "home/.vim/bundle/puppet"]
-	path = home/.vim/bundle/puppet
 	url = git://github.com/rodjek/vim-puppet.git
 [submodule "home/.vim/bundle/vim-flavored-markdown"]
 	path = home/.vim/bundle/vim-flavored-markdown
@@ -85,6 +58,3 @@
 [submodule "home/.vim/bundle/tabular"]
 	path = home/.vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
-[submodule "home/.vim/bundle/vim-projectionist"]
-	path = home/.vim/bundle/vim-projectionist
-	url = https://github.com/tpope/vim-projectionist.git
